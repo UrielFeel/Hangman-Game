@@ -1,97 +1,273 @@
-:root {
-  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
-  font-size: 16px;
-  line-height: 24px;
-  font-weight: 400;
+@import "./modern-normalize.css";
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-text-size-adjust: 100%;
+:root{
+  --light: #d8dbe0;
+  --dark: #28292c;
+}
+*{
+  user-select:none
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
+body{
+  background-color: #333344;
+  text-align: center;
+  --principal:var(--light);
+  --secundario:var(--dark);
+  
+  height: 100vh;
   display: flex;
-  place-items: center;
+  justify-content: center;
+  align-items: center;
+}
+
+body.dark{
+  --principal:var(--dark);
+  --secundario:var(--light);
+}
+
+main{
+  position: relative;
+  margin: 1.5rem auto;
+
+  min-height: 600px;
+  height: calc(100vh - 3rem);
+  max-height: 900px;
+
   min-width: 320px;
-  min-height: 100vh;
+  width: 95%;
+  max-width: 480px;
+
+  border-radius: 1.5rem; 
+  background-color: var(--principal);
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+/* toggle button */
+
+.toggle{
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+  display: flex;
+  z-index: 20;
 }
 
-#app {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+.toggle-check{
+  opacity: 0;
+  position: absolute;
+}
+
+.toggle-label{
+  display: flex;
+  align-items: center;
+  position: relative;
+  background-color: var(--secundario);
+  height: 30px;
+  width: 55px;
+  border-radius: 50px;
+  padding: 5px;
+}
+
+.ball{
+  position: absolute;
+  background-color: var(--principal);
+  height: 22px;
+  width: 22px;
+  border-radius: 99px;
+  transition: transform 0.2s linear;
+}
+
+.toggle-check:checked + .toggle-label .ball{
+  transform: translateX(24px);
+
+}
+
+.sun{
+  color: #ffa41b;
+}
+
+.moon{
+  color: var(--dark);
+}
+
+
+
+/*  */
+.container{  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+  width: 100%;
+  height: 100%; 
+}
+
+.rope{
+  height: 35%;
+}
+
+.landing div{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 65%;
+}
+
+.landing h1{
+  font-weight: bold;
+  font-size: 3rem;
+  color: var(--secundario);
+  text-transform: uppercase;
   text-align: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vanilla:hover {
-  filter: drop-shadow(0 0 2em #f7df1eaa);
+.game{
+  display: none;
 }
 
-.card {
-  padding: 2em;
+h2{
+  color: var(--secundario);
 }
 
-.read-the-docs {
-  color: #888;
+
+#gallow{
+  border-radius: 1rem;
+  margin-top: 3.5rem;
+  max-width: 100%;
+  max-height: calc(75% - 3rem)
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
+.btn-group{
+  height: 25%;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: center;
+}
+
+.btn{
+    background-color: var(--secundario);
+    border: solid transparent;
+    border-radius: 16px;
+    border-width: 4px;
+    color: var(--principal);
+    cursor: pointer;
+
+  
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: .8px;
+    line-height: 20px;
+
+    
+    outline: none;
+    overflow: visible;
+    padding: 13px 16px;
+
+    text-align: center;
+    text-transform: uppercase;
+
+    width: 70%;
+    max-width: 400px;
+
+    margin: 0 auto;
+    margin-top: 1rem;
+
+    
+}
+
+.btn:hover{
+  color: var(--secundario);
+  background-color: var(--principal);
+  border-color: inherit;
+}
+
+
+
+.modal{
+  position: relative;
+  border: 0;
+  border-radius: 1rem;
+  width: 90%;
+  max-width: 410px;
+  background-color: var(--principal);
+}
+
+.modal div{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal::backdrop{
+  background: #00000080;
+}
+
+.modal-body{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+}
+
+.close{
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+
+  border: solid;
+  border-radius: 10px;
+  border-color: transparent;
+  border-width: 4px;
+
+  outline: none;
+  padding: 4px 10px;
+  font-weight: bold;
+  background-color: rgb(235, 51, 19);
+  color: var(--principal);
   cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+.close:hover{
+  background-color: transparent;
+  color:rgb(235, 51, 19) ;
+  border-color: rgb(235, 51, 19);
 }
+
+.modal-img{
+  height: 250px;
+  margin: 0 auto;
+  margin-top: 2rem;
+}
+
+.keyboard{
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.keyboar-input{
+  line-height: 2rem;
+  padding: 0;
+  margin: .5rem;
+  border: solid;
+  outline: none;
+  color: transparent;
+  background-color: transparent;
+  border-color: var(--secundario);
+  border-radius: 16px;
+  border-width: 4px;
+  z-index: 20;
+
+}
+
+.keyboard-icon{
+  position: absolute;
+  color: var(--secundario);
+  z-index: 10;
+
+}
+
+
