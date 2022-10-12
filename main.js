@@ -90,7 +90,11 @@ document.querySelector('#newGame').onclick = ()=>{
 //
 
 const keysHandler = (e) => {
-  const letter = e.key.toUpperCase()
+  pick(e.key)
+}
+
+function pick (letter){
+  letter = letter.toUpperCase()
 
   // is a letter?
   if (!/^[a-zñ]$/i.test(letter) || hangman.wrongLetters.includes(letter) || hangman.discoverdLetters.includes(letter)) return
@@ -115,4 +119,10 @@ const keysHandler = (e) => {
 
 document.querySelector('#toggle-check').onclick = (e)=>{
   document.body.classList.toggle('dark')
+}
+
+document.querySelector('#keyboard').oninput = (e)=>{
+  pick(e.target.value)
+
+  e.target.value = ""
 }
